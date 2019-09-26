@@ -40,8 +40,8 @@ namespace StsServerIdentity
             {
                 new Client
                 {
-                    ClientName = "angularmvcmixedclient",
-                    ClientId = "angularmvcmixedclient",
+                    ClientName = "vuejsmvcmixedclient",
+                    ClientId = "vuejsmvcmixedclient",
                     ClientSecrets = {new Secret("thingsscopeSecret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Hybrid,
                     AllowOfflineAccess = true,
