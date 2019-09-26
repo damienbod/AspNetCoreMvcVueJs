@@ -5,6 +5,7 @@ console.log('@@@@@@@@@ VUE.JS Build @@@@@@@@@@@@@@@');
 module.exports = {
     outputDir: '../wwwroot',
     filenameHashing: true,
+	integrity: true,
     configureWebpack: {
 
         plugins: [

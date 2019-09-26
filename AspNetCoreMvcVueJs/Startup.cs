@@ -79,8 +79,10 @@ namespace AspNetCoreMvcVueJs
             app.UseReferrerPolicy(opts => opts.NoReferrer());
             app.UseCsp(opts => opts
                 .BlockAllMixedContent()
-                .ScriptSources(s => s.Self()).ScriptSources(s => s.UnsafeEval())
+                .ScriptSources(s => s.Self())
+                .ScriptSources(s => s.UnsafeEval())
                 .StyleSources(s => s.UnsafeInline())
+                .StyleSources(s => s.Self())
             );
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
