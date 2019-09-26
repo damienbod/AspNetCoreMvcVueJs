@@ -38,7 +38,8 @@ namespace AspNetCoreMvcVueJs
                 options.RequireHttpsMetadata = true;
                 options.ClientId = "vuejsmvcmixedclient";
                 options.ClientSecret = "thingsscopeSecret";
-                options.ResponseType = "code id_token";
+                options.UsePkce = true;
+                options.ResponseType = "code";
                 options.Scope.Add("thingsscope");
                 options.Scope.Add("profile");
                 options.Prompt = "login"; // select_account login consent
