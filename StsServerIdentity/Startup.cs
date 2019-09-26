@@ -23,6 +23,7 @@ using Microsoft.IdentityModel.Tokens;
 using StsServerIdentity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 namespace StsServerIdentity
 {
@@ -166,8 +167,10 @@ namespace StsServerIdentity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+  
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }

@@ -36,7 +36,7 @@ namespace AspNetCoreMvcVueJs
                 options.SignInScheme = "Cookies";
                 options.Authority = "https://localhost:44348";
                 options.RequireHttpsMetadata = true;
-                options.ClientId = "angularmvcmixedclient";
+                options.ClientId = "vuejsmvcmixedclient";
                 options.ClientSecret = "thingsscopeSecret";
                 options.ResponseType = "code id_token";
                 options.Scope.Add("thingsscope");
