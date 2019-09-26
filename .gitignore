@@ -1,0 +1,4 @@
+/.vs
+/AspNetCoreMvcVueJs/obj
+/IdentityServerWithIdentitySQLite/node_modules
+/IdentityServerWithIdentitySQLite/obj

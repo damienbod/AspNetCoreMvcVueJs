@@ -2,9 +2,9 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCoreMvcAngular.Models;
+using AspNetCoreMvcVueJs.Models;
 
-namespace AspNetCoreMvcAngular.Repositories.Things
+namespace AspNetCoreMvcVueJs.Repositories.Things
 {
     public class ThingsRepository : IThingsRepository
     {

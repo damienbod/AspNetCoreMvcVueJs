@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 
-namespace AspNetCoreMvcAngular.Controller
+namespace AspNetCoreMvcVueJs.Controller
 {
     [Authorize]
     [Route("api/[controller]")]

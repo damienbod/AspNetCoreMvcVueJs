@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace AspNetCoreMvcAngular.Controllers
+namespace AspNetCoreMvcVueJs.Controllers
 {
     [Authorize]
     public class HomeController : Microsoft.AspNetCore.Mvc.Controller

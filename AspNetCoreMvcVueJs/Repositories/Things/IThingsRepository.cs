@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AspNetCoreMvcAngular.Models;
+using AspNetCoreMvcVueJs.Models;
 
-namespace AspNetCoreMvcAngular.Repositories.Things
+namespace AspNetCoreMvcVueJs.Repositories.Things
 {
     public interface IThingsRepository
     {

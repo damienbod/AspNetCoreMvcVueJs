@@ -7,7 +7,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace AspNetCoreMvcAngular
+namespace AspNetCoreMvcVueJs
 {
     public class Program
     {

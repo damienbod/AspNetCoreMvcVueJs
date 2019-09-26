@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreMvcAngular.Models
+﻿namespace AspNetCoreMvcVueJs.Models
 {
     public class Thing
     {
