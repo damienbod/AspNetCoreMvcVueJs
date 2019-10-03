@@ -14,16 +14,13 @@ vue create .
 
 ## History
 
+2019-10-03 first version with Vue.js and ASP.NET core in a single project
 
 ## Blogs
 
 
 
- ## Links 
-
-https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-2.2
-
-https://en.wikipedia.org/wiki/Cross-site_request_forgery
+## Links 
 
 https://cli.vuejs.org/
 
