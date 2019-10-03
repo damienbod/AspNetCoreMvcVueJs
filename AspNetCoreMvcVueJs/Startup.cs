@@ -74,7 +74,6 @@ namespace AspNetCoreMvcVueJs
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -91,11 +90,6 @@ namespace AspNetCoreMvcVueJs
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            var angularRoutes = new[] {
-                 "/default",
-                 "/about"
-             };
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
@@ -105,28 +99,9 @@ namespace AspNetCoreMvcVueJs
             app.UseXXssProtection(options => options.EnabledWithBlockMode());
 
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.Use(async (context, next) =>
-            {
-                string path = context.Request.Path.Value;
-                if (path != null && !path.ToLower().Contains("/api"))
-                {
-                    // XSRF-TOKEN used by angular in the $http if provided
-                    var tokens = antiforgery.GetAndStoreTokens(context);
-                    context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
-                        new CookieOptions() { HttpOnly = false });
-                }
-
-                if (context.Request.Path.HasValue && null != angularRoutes.FirstOrDefault(
-                    (ar) => context.Request.Path.Value.StartsWith(ar, StringComparison.OrdinalIgnoreCase)))
-                {
-                    context.Request.Path = new PathString("/");
-                }
-
-                await next();
-            });
 
             app.UseEndpoints(endpoints =>
             {
