@@ -1,12 +1,8 @@
-import { UserManager, WebStorageStateStore, User } from 'oidc-client';
-
+import { UserManager, WebStorageStateStore } from 'oidc-client';
 export default class AuthService {
-    private userManager: UserManager;
-
     constructor() {
-        const STS_DOMAIN: string = 'https://localhost:44348';
-
-        const settings: any = {
+        const STS_DOMAIN = 'https://localhost:44348';
+        const settings = {
             userStore: new WebStorageStateStore({ store: window.localStorage }),
             authority: STS_DOMAIN,
             client_id: 'vuejs_code_client',
@@ -18,25 +14,21 @@ export default class AuthService {
             post_logout_redirect_uri: 'https://localhost:44341/',
             filterProtocolClaims: true,
         };
-
         this.userManager = new UserManager(settings);
     }
-
-    public getUser(): Promise<User | null> {
+    getUser() {
         return this.userManager.getUser();
     }
-
-    public login(): Promise<void> {
+    login() {
         return this.userManager.signinRedirect();
     }
-
-    public logout(): Promise<void> {
+    logout() {
         return this.userManager.signoutRedirect();
     }
-
-    public getAccessToken(): Promise<string> {
-        return this.userManager.getUser().then((data: any) => {
+    getAccessToken() {
+        return this.userManager.getUser().then((data) => {
             return data.access_token;
         });
     }
 }
+//# sourceMappingURL=auth.service.js.map

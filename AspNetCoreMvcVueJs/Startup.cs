@@ -1,14 +1,8 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using AspNetCoreMvcVueJs.Model;
@@ -29,8 +23,6 @@ namespace AspNetCoreMvcVueJs
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            var useLocalCertStore = Convert.ToBoolean(Configuration["UseLocalCertStore"]);
-            var certificateThumbprint = Configuration["CertificateThumbprint"];
 
             services.AddDbContext<DataEventRecordContext>(options =>
                 options.UseSqlite(connection)
@@ -65,7 +57,7 @@ namespace AspNetCoreMvcVueJs
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IAntiforgery antiforgery)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
