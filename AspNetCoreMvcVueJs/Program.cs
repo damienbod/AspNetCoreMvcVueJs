@@ -59,10 +59,11 @@ namespace AspNetCoreMvcVueJs
                     //.AddUserSecrets("your user secret....");
 
                 })
-            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContext.Configuration)
-                .Enrich.FromLogContext()
-                .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                    .ReadFrom.Configuration(hostingContext.Configuration)
+                    .Enrich.FromLogContext()
+                    .WriteTo.File("../ResourceServerLogs.txt")
+                    .WriteTo.Console(theme: AnsiConsoleTheme.Code)
             );
     }
 }

@@ -64,7 +64,7 @@
             auth.getAccessToken().then((userToken: string) => {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
 
-                axios.get('https://localhost:44355/api/DataEventRecords/')
+                axios.get('https://localhost:44341/api/DataEventRecords/')
                     .then((response: any) => {
                         this.dataEventRecordsItems = response.data;
                     })

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using AspNetCoreMvcVueJs.Model;
 using Microsoft.EntityFrameworkCore;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.IdentityModel.Logging;
 
 namespace AspNetCoreMvcVueJs
 {
@@ -61,6 +62,7 @@ namespace AspNetCoreMvcVueJs
         {
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -76,6 +78,7 @@ namespace AspNetCoreMvcVueJs
                 .BlockAllMixedContent()
                 .ScriptSources(s => s.Self())
                 .ScriptSources(s => s.UnsafeEval())
+                .ScriptSources(s => s.UnsafeInline())
                 .StyleSources(s => s.UnsafeInline())
                 .StyleSources(s => s.Self())
             );

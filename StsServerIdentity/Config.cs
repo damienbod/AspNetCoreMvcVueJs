@@ -49,28 +49,6 @@ namespace StsServerIdentity
             {
                 new Client
                 {
-                    ClientName = "vuejsmvcmixedclient",
-                    ClientId = "vuejsmvcmixedclient",
-                    ClientSecrets = {new Secret("thingsscopeSecret".Sha256()) },
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    AllowOfflineAccess = true,
-                    RedirectUris = { "https://localhost:44341/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:44341/signout-callback-oidc" },
-                    AllowedCorsOrigins = new List<string>
-                    {
-                        "https://localhost:44341"
-                    },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "role"
-                    }
-                },
-                new Client
-                {
                     ClientName = "vuejs_code_client",
                     ClientId = "vuejs_code_client",
                     AccessTokenType = AccessTokenType.Reference,

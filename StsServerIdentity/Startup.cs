@@ -167,7 +167,6 @@ namespace StsServerIdentity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-  
             if (env.IsDevelopment())
             {
                 IdentityModelEventSource.ShowPII = true;
