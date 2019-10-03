@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using AspNetCoreMvcVueJs.Model;
 using Microsoft.EntityFrameworkCore;
+using IdentityServer4.AccessTokenValidation;
 
 namespace AspNetCoreMvcVueJs
 {
@@ -34,27 +35,30 @@ namespace AspNetCoreMvcVueJs
             services.AddDbContext<DataEventRecordContext>(options =>
                 options.UseSqlite(connection)
             );
-            services.AddAuthentication(options => {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddCookie()
-            .AddOpenIdConnect(options =>
-            {
-                options.SignInScheme = "Cookies";
-                options.Authority = "https://localhost:44348";
-                options.RequireHttpsMetadata = true;
-                options.ClientId = "vuejsmvcmixedclient";
-                options.ClientSecret = "thingsscopeSecret";
-                options.UsePkce = true;
-                options.ResponseType = "code";
-                options.Scope.Add("thingsscope");
-                options.Scope.Add("profile");
-                options.Prompt = "login"; // select_account login consent
-                options.SaveTokens = true;
-            });
 
-            services.AddAuthorization();
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+              .AddIdentityServerAuthentication(options =>
+              {
+                  options.Authority = "https://localhost:44348/";
+                  options.ApiName = "dataEventRecords";
+                  options.ApiSecret = "dataEventRecordsSecret";
+              });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("dataEventRecordsAdmin", policyAdmin =>
+                {
+                    policyAdmin.RequireClaim("role", "dataEventRecords.admin");
+                });
+                options.AddPolicy("dataEventRecordsUser", policyUser =>
+                {
+                    policyUser.RequireClaim("role", "dataEventRecords.user");
+                });
+                options.AddPolicy("dataEventRecords", policyUser =>
+                {
+                    policyUser.RequireClaim("scope", "dataEventRecords");
+                });
+            });
 
             services.AddControllers()
                 .AddNewtonsoftJson()
@@ -126,9 +130,7 @@ namespace AspNetCoreMvcVueJs
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
