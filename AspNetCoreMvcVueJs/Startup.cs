@@ -9,6 +9,7 @@ using AspNetCoreMvcVueJs.Model;
 using Microsoft.EntityFrameworkCore;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.IdentityModel.Logging;
+using AspNetCoreMvcVueJs.Repositories;
 
 namespace AspNetCoreMvcVueJs
 {
@@ -28,6 +29,7 @@ namespace AspNetCoreMvcVueJs
             services.AddDbContext<DataEventRecordContext>(options =>
                 options.UseSqlite(connection)
             );
+            services.AddScoped<IDataEventRecordRepository, DataEventRecordRepository>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
               .AddIdentityServerAuthentication(options =>
