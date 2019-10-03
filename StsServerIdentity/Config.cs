@@ -15,7 +15,8 @@ namespace StsServerIdentity
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Email()
+                new IdentityResources.Email(),
+                new IdentityResource("dataeventrecordsscope",new []{ "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin" , "dataEventRecords.user" } )
             };
         }
 
@@ -23,13 +24,21 @@ namespace StsServerIdentity
         {
             return new List<ApiResource>
             {
-                new ApiResource("thingsscope")
+                new ApiResource("dataEventRecords")
                 {
                     ApiSecrets =
                     {
-                        new Secret("thingsscopeSecret".Sha256())
+                        new Secret("dataEventRecordsSecret".Sha256())
                     },
-                    UserClaims = { "role", "admin", "user", "thingsapi" }
+                    Scopes =
+                    {
+                        new Scope
+                        {
+                            Name = "dataeventrecords",
+                            DisplayName = "Scope for the dataEventRecords ApiResource"
+                        }
+                    },
+                    UserClaims = { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user" }
                 }
             };
         }
@@ -57,10 +66,48 @@ namespace StsServerIdentity
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "thingsscope",
                         "role"
                     }
-                }
+                },
+                new Client
+                {
+                    ClientName = "vuejs_code_client",
+                    ClientId = "vuejs_code_client",
+                    AccessTokenType = AccessTokenType.Reference,
+                    // RequireConsent = false,
+                    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime = 300,
+
+                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+
+                    AllowAccessTokensViaBrowser = true,
+                    RedirectUris = new List<string>
+                    {
+                        "https://localhost:44341",
+                        "https://localhost:44341/callback.html",
+                        "https://localhost:44341/silent-renew.html"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://localhost:44341/",
+                        "https://localhost:44341"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "https://localhost:44341"
+                    },
+                    AllowedScopes = new List<string>
+                    {
+                        "openid",
+                        "dataEventRecords",
+                        "dataeventrecordsscope",
+                        "role",
+                        "profile",
+                        "email"
+                    }
+                },
             };
         }
     }
