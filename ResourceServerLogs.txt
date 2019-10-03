@@ -1,0 +1,222 @@
+2019-10-03 16:26:34.783 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-03 16:26:35.015 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/index.html  
+2019-10-03 16:26:35.080 +02:00 [INF] The file /index.html was not modified
+2019-10-03 16:26:35.133 +02:00 [INF] Request finished in 124.5258ms 304 text/html
+2019-10-03 16:26:35.169 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:26:35.244 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:26:35.244 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:26:35.244 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:26:35.334 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js'
+2019-10-03 16:26:35.334 +02:00 [INF] Sending file. Request path: '/css/app.f286927a.css'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\css\app.f286927a.css'
+2019-10-03 16:26:35.334 +02:00 [INF] Sending file. Request path: '/js/about.246dac3b.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\about.246dac3b.js'
+2019-10-03 16:26:35.334 +02:00 [INF] Request finished in 89.4081ms 200 application/javascript
+2019-10-03 16:26:35.334 +02:00 [INF] Request finished in 89.32780000000001ms 200 text/css
+2019-10-03 16:26:35.334 +02:00 [INF] Request finished in 164.8495ms 200 application/javascript
+2019-10-03 16:26:35.396 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js'
+2019-10-03 16:26:35.400 +02:00 [INF] Request finished in 155.48520000000002ms 200 application/javascript
+2019-10-03 16:26:35.596 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:26:35.625 +02:00 [INF] Sending file. Request path: '/img/logo.82b9c7a5.png'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\img\logo.82b9c7a5.png'
+2019-10-03 16:26:35.627 +02:00 [INF] Request finished in 31.406100000000002ms 200 image/png
+2019-10-03 16:26:35.629 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:26:35.633 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:26:35.686 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:26:35.687 +02:00 [INF] Request finished in 57.6368ms 200 text/plain
+2019-10-03 16:26:35.712 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:26:35.713 +02:00 [INF] Request finished in 80.4762ms 200 text/plain
+2019-10-03 16:26:38.413 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/api/DataEventRecords/  
+2019-10-03 16:26:38.587 +02:00 [INF] Start processing HTTP request GET "https://localhost:44348/.well-known/openid-configuration"
+2019-10-03 16:26:38.590 +02:00 [INF] Sending HTTP request GET "https://localhost:44348/.well-known/openid-configuration"
+2019-10-03 16:26:38.760 +02:00 [INF] Received HTTP response after 167.2981ms - "OK"
+2019-10-03 16:26:38.761 +02:00 [INF] End processing HTTP request after 176.5189ms - "OK"
+2019-10-03 16:26:38.802 +02:00 [INF] Start processing HTTP request GET "https://localhost:44348/.well-known/openid-configuration/jwks"
+2019-10-03 16:26:38.802 +02:00 [INF] Sending HTTP request GET "https://localhost:44348/.well-known/openid-configuration/jwks"
+2019-10-03 16:26:38.868 +02:00 [INF] Received HTTP response after 66.4976ms - "OK"
+2019-10-03 16:26:38.869 +02:00 [INF] End processing HTTP request after 66.8079ms - "OK"
+2019-10-03 16:26:38.999 +02:00 [INF] Start processing HTTP request POST "https://localhost:44348/connect/introspect"
+2019-10-03 16:26:38.999 +02:00 [INF] Sending HTTP request POST "https://localhost:44348/connect/introspect"
+2019-10-03 16:26:39.047 +02:00 [INF] Received HTTP response after 48.298100000000005ms - "OK"
+2019-10-03 16:26:39.047 +02:00 [INF] End processing HTTP request after 48.5998ms - "OK"
+2019-10-03 16:26:39.060 +02:00 [INF] BearerIdentityServerAuthenticationIntrospection was not authenticated. Failure message: Token is not active.
+2019-10-03 16:26:39.062 +02:00 [INF] Bearer was not authenticated. Failure message: Token is not active.
+2019-10-03 16:26:39.068 +02:00 [INF] Authorization failed.
+2019-10-03 16:26:39.070 +02:00 [INF] AuthenticationScheme: BearerIdentityServerAuthenticationIntrospection was challenged.
+2019-10-03 16:26:39.071 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2019-10-03 16:26:39.073 +02:00 [INF] Request finished in 660.008ms 401 
+2019-10-03 16:26:52.100 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/  
+2019-10-03 16:26:52.106 +02:00 [INF] Sending file. Request path: '/index.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\index.html'
+2019-10-03 16:26:52.107 +02:00 [INF] Request finished in 6.6443ms 200 text/html
+2019-10-03 16:26:52.143 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:26:52.143 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:26:52.143 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:26:52.143 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:26:52.147 +02:00 [INF] Sending file. Request path: '/css/app.f286927a.css'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\css\app.f286927a.css'
+2019-10-03 16:26:52.147 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js'
+2019-10-03 16:26:52.147 +02:00 [INF] Request finished in 4.2945ms 200 application/javascript
+2019-10-03 16:26:52.147 +02:00 [INF] Request finished in 4.4621ms 200 text/css
+2019-10-03 16:26:52.150 +02:00 [INF] Sending file. Request path: '/js/about.246dac3b.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\about.246dac3b.js'
+2019-10-03 16:26:52.155 +02:00 [INF] Request finished in 9.2513ms 200 application/javascript
+2019-10-03 16:26:52.163 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js'
+2019-10-03 16:26:52.163 +02:00 [INF] Request finished in 20.6095ms 200 application/javascript
+2019-10-03 16:26:52.286 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:26:52.287 +02:00 [INF] Sending file. Request path: '/img/logo.82b9c7a5.png'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\img\logo.82b9c7a5.png'
+2019-10-03 16:26:52.287 +02:00 [INF] Request finished in 1.6308ms 200 image/png
+2019-10-03 16:26:52.289 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:26:52.289 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:26:52.295 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:26:52.295 +02:00 [INF] Request finished in 6.785500000000001ms 200 text/plain
+2019-10-03 16:26:52.312 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:26:52.312 +02:00 [INF] Request finished in 23.2173ms 200 text/plain
+2019-10-03 16:26:57.371 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/callback.html?code=2finQ6U4hKUIk9M_vrvkBY6MkGfJwBHFJUzGdw58B9Y&scope=openid%20profile%20dataEventRecords&state=18c13f286eef4b928f5142cf49990a24&session_state=BAp1TIVBuWlg28iUQ-m3ZJu00ZK02GCY_uzHl-lfiNA.SeF1UR_wC2kVizW_I0eYJw  
+2019-10-03 16:26:57.373 +02:00 [INF] Sending file. Request path: '/callback.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\callback.html'
+2019-10-03 16:26:57.374 +02:00 [INF] Request finished in 2.8157ms 200 text/html
+2019-10-03 16:26:57.399 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/oidc-client.min.js  
+2019-10-03 16:26:57.404 +02:00 [INF] Sending file. Request path: '/js/oidc-client.min.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\oidc-client.min.js'
+2019-10-03 16:26:57.405 +02:00 [INF] Request finished in 5.5041ms 200 application/javascript
+2019-10-03 16:26:57.754 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/  
+2019-10-03 16:26:57.765 +02:00 [INF] Sending file. Request path: '/index.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\index.html'
+2019-10-03 16:26:57.766 +02:00 [INF] Request finished in 11.5378ms 200 text/html
+2019-10-03 16:26:57.811 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:26:57.811 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:26:57.813 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js'
+2019-10-03 16:26:57.814 +02:00 [INF] Sending file. Request path: '/css/app.f286927a.css'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\css\app.f286927a.css'
+2019-10-03 16:26:57.815 +02:00 [INF] Request finished in 3.8283ms 200 application/javascript
+2019-10-03 16:26:57.816 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:26:57.815 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:26:57.820 +02:00 [INF] Sending file. Request path: '/js/about.246dac3b.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\about.246dac3b.js'
+2019-10-03 16:26:57.816 +02:00 [INF] Request finished in 5.2915ms 200 text/css
+2019-10-03 16:26:57.821 +02:00 [INF] Request finished in 5.2818000000000005ms 200 application/javascript
+2019-10-03 16:26:57.830 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js'
+2019-10-03 16:26:57.830 +02:00 [INF] Request finished in 15.082ms 200 application/javascript
+2019-10-03 16:26:57.927 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:26:57.929 +02:00 [INF] Sending file. Request path: '/img/logo.82b9c7a5.png'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\img\logo.82b9c7a5.png'
+2019-10-03 16:26:57.930 +02:00 [INF] Request finished in 2.8082000000000003ms 200 image/png
+2019-10-03 16:26:57.952 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:26:57.952 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:26:57.955 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:26:57.955 +02:00 [INF] Request finished in 3.4696000000000002ms 200 text/plain
+2019-10-03 16:26:57.967 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:26:57.967 +02:00 [INF] Request finished in 15.755700000000001ms 200 text/plain
+2019-10-03 16:27:00.896 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/api/DataEventRecords/  
+2019-10-03 16:27:01.161 +02:00 [INF] Successfully validated the token.
+2019-10-03 16:27:01.163 +02:00 [INF] Authorization failed.
+2019-10-03 16:27:01.164 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2019-10-03 16:27:01.164 +02:00 [INF] Request finished in 268.31690000000003ms 403 
+2019-10-03 16:30:53.878 +02:00 [INF] User profile is available. Using 'C:\Users\stduser\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-03 16:30:54.069 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/index.html  
+2019-10-03 16:30:54.094 +02:00 [INF] The file /index.html was not modified
+2019-10-03 16:30:54.118 +02:00 [INF] Request finished in 54.197900000000004ms 304 text/html
+2019-10-03 16:30:54.146 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:30:54.170 +02:00 [INF] The file /css/app.f286927a.css was not modified
+2019-10-03 16:30:54.172 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:30:54.186 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:30:54.186 +02:00 [INF] The file /js/chunk-vendors.35844711.js was not modified
+2019-10-03 16:30:54.186 +02:00 [INF] Request finished in 40.723800000000004ms 304 text/css
+2019-10-03 16:30:54.200 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:30:54.200 +02:00 [INF] The file /js/about.246dac3b.js was not modified
+2019-10-03 16:30:54.186 +02:00 [INF] Request finished in 15.2797ms 304 application/javascript
+2019-10-03 16:30:54.201 +02:00 [INF] Request finished in 15.465100000000001ms 304 application/javascript
+2019-10-03 16:30:54.202 +02:00 [INF] The file /js/app.72e1d8cf.js was not modified
+2019-10-03 16:30:54.202 +02:00 [INF] Request finished in 16.2851ms 304 application/javascript
+2019-10-03 16:30:54.288 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:30:54.288 +02:00 [INF] The file /img/logo.82b9c7a5.png was not modified
+2019-10-03 16:30:54.288 +02:00 [INF] Request finished in 0.7269ms 304 image/png
+2019-10-03 16:30:55.227 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:30:55.228 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:30:55.275 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:30:55.311 +02:00 [INF] Request finished in 85.10300000000001ms 200 text/plain
+2019-10-03 16:30:55.314 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:30:55.314 +02:00 [INF] Request finished in 88.79820000000001ms 200 text/plain
+2019-10-03 16:30:59.609 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/  
+2019-10-03 16:30:59.636 +02:00 [INF] Sending file. Request path: '/index.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\index.html'
+2019-10-03 16:30:59.638 +02:00 [INF] Request finished in 30.0397ms 200 text/html
+2019-10-03 16:30:59.682 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:30:59.682 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:30:59.682 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:30:59.685 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js'
+2019-10-03 16:30:59.686 +02:00 [INF] Sending file. Request path: '/css/app.f286927a.css'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\css\app.f286927a.css'
+2019-10-03 16:30:59.686 +02:00 [INF] Request finished in 4.1872ms 200 application/javascript
+2019-10-03 16:30:59.686 +02:00 [INF] Request finished in 4.5943000000000005ms 200 text/css
+2019-10-03 16:30:59.694 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:30:59.698 +02:00 [INF] Sending file. Request path: '/js/about.246dac3b.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\about.246dac3b.js'
+2019-10-03 16:30:59.699 +02:00 [INF] Request finished in 4.647600000000001ms 200 application/javascript
+2019-10-03 16:30:59.700 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js'
+2019-10-03 16:30:59.701 +02:00 [INF] Request finished in 18.9404ms 200 application/javascript
+2019-10-03 16:30:59.808 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:30:59.812 +02:00 [INF] Sending file. Request path: '/img/logo.82b9c7a5.png'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\img\logo.82b9c7a5.png'
+2019-10-03 16:30:59.812 +02:00 [INF] Request finished in 3.7585ms 200 image/png
+2019-10-03 16:30:59.816 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:30:59.816 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:30:59.819 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:30:59.819 +02:00 [INF] Request finished in 2.7969ms 200 text/plain
+2019-10-03 16:30:59.827 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:30:59.828 +02:00 [INF] Request finished in 11.3382ms 200 text/plain
+2019-10-03 16:31:05.220 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/callback.html?code=YfXlioeHL78H5ByTuT5mw3xrzMxcDeOinWnB6M5SeIs&scope=openid%20profile%20dataEventRecords&state=da2adcf060174c39b75edce7d26ebe27&session_state=x8faPi8GKstVYZwtXHLxflwqjC5WYqf-ixBn7yKcUu8.74IVSAfve6q0TUf07LGXTA  
+2019-10-03 16:31:05.222 +02:00 [INF] Sending file. Request path: '/callback.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\callback.html'
+2019-10-03 16:31:05.223 +02:00 [INF] Request finished in 2.2976ms 200 text/html
+2019-10-03 16:31:05.247 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/oidc-client.min.js  
+2019-10-03 16:31:05.253 +02:00 [INF] Sending file. Request path: '/js/oidc-client.min.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\oidc-client.min.js'
+2019-10-03 16:31:05.253 +02:00 [INF] Request finished in 6.173900000000001ms 200 application/javascript
+2019-10-03 16:31:05.596 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/  
+2019-10-03 16:31:05.600 +02:00 [INF] Sending file. Request path: '/index.html'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\index.html'
+2019-10-03 16:31:05.601 +02:00 [INF] Request finished in 5.2849ms 200 text/html
+2019-10-03 16:31:05.635 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/css/app.f286927a.css  
+2019-10-03 16:31:05.636 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js  
+2019-10-03 16:31:05.637 +02:00 [INF] Sending file. Request path: '/css/app.f286927a.css'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\css\app.f286927a.css'
+2019-10-03 16:31:05.637 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js  
+2019-10-03 16:31:05.637 +02:00 [INF] Request finished in 2.0737ms 200 text/css
+2019-10-03 16:31:05.637 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/about.246dac3b.js  
+2019-10-03 16:31:05.638 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js'
+2019-10-03 16:31:05.638 +02:00 [INF] Request finished in 1.7279ms 200 application/javascript
+2019-10-03 16:31:05.639 +02:00 [INF] Sending file. Request path: '/js/about.246dac3b.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\about.246dac3b.js'
+2019-10-03 16:31:05.641 +02:00 [INF] Request finished in 4.0514ms 200 application/javascript
+2019-10-03 16:31:05.652 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js'
+2019-10-03 16:31:05.652 +02:00 [INF] Request finished in 15.172ms 200 application/javascript
+2019-10-03 16:31:05.753 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/img/logo.82b9c7a5.png  
+2019-10-03 16:31:05.754 +02:00 [INF] Sending file. Request path: '/img/logo.82b9c7a5.png'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\img\logo.82b9c7a5.png'
+2019-10-03 16:31:05.754 +02:00 [INF] Request finished in 1.298ms 200 image/png
+2019-10-03 16:31:05.766 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/chunk-vendors.35844711.js.map  
+2019-10-03 16:31:05.765 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/js/app.72e1d8cf.js.map  
+2019-10-03 16:31:05.774 +02:00 [INF] Sending file. Request path: '/js/app.72e1d8cf.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\app.72e1d8cf.js.map'
+2019-10-03 16:31:05.775 +02:00 [INF] Request finished in 10.182500000000001ms 200 text/plain
+2019-10-03 16:31:05.792 +02:00 [INF] Sending file. Request path: '/js/chunk-vendors.35844711.js.map'. Physical path: 'C:\git\damienbod\AspNetCoreMvcVueJs\AspNetCoreMvcVueJs\wwwroot\js\chunk-vendors.35844711.js.map'
+2019-10-03 16:31:05.795 +02:00 [INF] Request finished in 28.803ms 200 text/plain
+2019-10-03 16:31:06.875 +02:00 [INF] Request starting HTTP/2.0 GET https://localhost:44341/api/DataEventRecords/  
+2019-10-03 16:31:06.989 +02:00 [INF] Start processing HTTP request GET "https://localhost:44348/.well-known/openid-configuration"
+2019-10-03 16:31:06.992 +02:00 [INF] Sending HTTP request GET "https://localhost:44348/.well-known/openid-configuration"
+2019-10-03 16:31:07.170 +02:00 [INF] Received HTTP response after 174.8304ms - "OK"
+2019-10-03 16:31:07.171 +02:00 [INF] End processing HTTP request after 184.48260000000002ms - "OK"
+2019-10-03 16:31:07.214 +02:00 [INF] Start processing HTTP request GET "https://localhost:44348/.well-known/openid-configuration/jwks"
+2019-10-03 16:31:07.214 +02:00 [INF] Sending HTTP request GET "https://localhost:44348/.well-known/openid-configuration/jwks"
+2019-10-03 16:31:07.231 +02:00 [INF] Received HTTP response after 16.5696ms - "OK"
+2019-10-03 16:31:07.231 +02:00 [INF] End processing HTTP request after 16.829ms - "OK"
+2019-10-03 16:31:07.374 +02:00 [INF] Start processing HTTP request POST "https://localhost:44348/connect/introspect"
+2019-10-03 16:31:07.374 +02:00 [INF] Sending HTTP request POST "https://localhost:44348/connect/introspect"
+2019-10-03 16:31:07.405 +02:00 [INF] Received HTTP response after 31.390600000000003ms - "OK"
+2019-10-03 16:31:07.405 +02:00 [INF] End processing HTTP request after 31.7515ms - "OK"
+2019-10-03 16:31:07.436 +02:00 [INF] Authorization was successful.
+2019-10-03 16:31:07.436 +02:00 [INF] Executing endpoint 'AspNetCoreMvcVueJs.Controllers.DataEventRecordsController.Get (AspNetCoreMvcVueJs)'
+2019-10-03 16:31:07.451 +02:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller AspNetCoreMvcVueJs.Controllers.DataEventRecordsController (AspNetCoreMvcVueJs).
+2019-10-03 16:31:07.457 +02:00 [INF] Executed action AspNetCoreMvcVueJs.Controllers.DataEventRecordsController.Get (AspNetCoreMvcVueJs) in 1.9208ms
+2019-10-03 16:31:07.458 +02:00 [INF] Executed endpoint 'AspNetCoreMvcVueJs.Controllers.DataEventRecordsController.Get (AspNetCoreMvcVueJs)'
+2019-10-03 16:31:07.460 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'AspNetCoreMvcVueJs.Repositories.IDataEventRecordRepository' while attempting to activate 'AspNetCoreMvcVueJs.Controllers.DataEventRecordsController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.CspMiddleware.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at NWebsec.AspNetCore.Middleware.Middleware.MiddlewareBase.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-03 16:31:07.514 +02:00 [INF] Request finished in 639.5148ms 500 text/plain
