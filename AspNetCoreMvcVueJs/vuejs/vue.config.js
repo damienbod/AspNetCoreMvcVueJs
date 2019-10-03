@@ -1,19 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-console.log('@@@@@@@@@ VUE.JS Build @@@@@@@@@@@@@@@');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    outputDir: '../wwwroot',
-    filenameHashing: true,
-	integrity: true,
     configureWebpack: {
-
-        plugins: [
-            new HtmlWebpackPlugin({
-                filename: '../../Views/Shared/_Layout.cshtml',
-                inject: 'body',
-                template: 'public/_Layout.cshtml'
-            })
-        ]
+      plugins: [
+        new CopyWebpackPlugin([
+            { from: 'node_modules/oidc-client/dist/oidc-client.min.js', to: 'js' }
+        ])
+      ]
     }
-}
+  }

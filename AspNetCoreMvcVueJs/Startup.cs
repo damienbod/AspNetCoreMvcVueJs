@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AspNetCoreMvcVueJs.Repositories.Things;
 using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Antiforgery;
@@ -12,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using AspNetCoreMvcVueJs.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreMvcVueJs
 {
@@ -26,6 +27,13 @@ namespace AspNetCoreMvcVueJs
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            var useLocalCertStore = Convert.ToBoolean(Configuration["UseLocalCertStore"]);
+            var certificateThumbprint = Configuration["CertificateThumbprint"];
+
+            services.AddDbContext<DataEventRecordContext>(options =>
+                options.UseSqlite(connection)
+            );
             services.AddAuthentication(options => {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -46,17 +54,9 @@ namespace AspNetCoreMvcVueJs
                 options.SaveTokens = true;
             });
 
-            // TODO add policies 
             services.AddAuthorization();
 
-            services.AddSingleton<IThingsRepository, ThingsRepository>();
-            services.AddAntiforgery(options =>
-            {
-                options.Cookie.HttpOnly = false;
-                options.HeaderName = "X-XSRF-TOKEN";
-            });
-
-            services.AddControllersWithViews()
+            services.AddControllers()
                 .AddNewtonsoftJson()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
