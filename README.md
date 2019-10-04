@@ -24,3 +24,9 @@ vue create .
 
 https://cli.vuejs.org/
 
+https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0
+
+http://docs.identityserver.io/en/latest/
+
+https://damienbod.com/2019/01/29/securing-a-vue-js-app-using-openid-connect-code-flow-with-pkce-and-identityserver4/
+
