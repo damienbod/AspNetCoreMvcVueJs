@@ -2,19 +2,9 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lqiqgxxq929eghlb?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremvcvuejs)
 
-
-## Setup / Tools
-
-npm install -g @vue/cli
-
-vue --version
-
-vue create .
-
-
 ## History
 
-2019-10-03 first version with Vue.js and ASP.NET core in a single project
+2019-10-04 first version with Vue.js and ASP.NET core in a single project
 
 ## Blogs
 
@@ -28,4 +18,14 @@ https://cli.vuejs.org/
 https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0
 
 http://docs.identityserver.io/en/latest/
+
+## Setup / Tools
+
+npm install -g @vue/cli
+
+vue --version
+
+vue create .
+
+
 
