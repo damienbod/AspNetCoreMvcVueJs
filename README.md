@@ -1,6 +1,6 @@
 ## ASP.NET Code MVC Client with Vue.js View and IdentityServer4 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/wkt4bkxgocxhetqn?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremvcangular)
+[![Build status](https://ci.appveyor.com/api/projects/status/lqiqgxxq929eghlb?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremvcvuejs)
 
 
 ## Setup / Tools
