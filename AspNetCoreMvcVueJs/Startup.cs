@@ -91,7 +91,7 @@ namespace AspNetCoreMvcVueJs
             app.UseStaticFiles();
 
             //Registered after static files, to set headers for dynamic content.
-            app.UseXfo(xfo => xfo.Deny());
+            //app.UseXfo(xfo => xfo.Deny());
             app.UseRedirectValidation(t => t.AllowSameHostRedirectsToHttps(44348)); 
             app.UseXXssProtection(options => options.EnabledWithBlockMode());
 
