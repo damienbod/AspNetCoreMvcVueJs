@@ -8,8 +8,13 @@
 
 ## Blogs
 
-https://damienbod.com/2019/01/29/securing-a-vue-js-app-using-openid-connect-code-flow-with-pkce-and-identityserver4/
+Building and securing an ASP.NET Core API with a hosted Vue.js UI
 
+https://damienbod.com/2019/10/04/building-and-securing-an-asp-net-core-api-with-a-hosted-vue-js-ui/
+
+Securing a Vue.js app using OpenID Connect Code Flow with PKCE and IdentityServer4
+
+https://damienbod.com/2019/01/29/securing-a-vue-js-app-using-openid-connect-code-flow-with-pkce-and-identityserver4/
 
 ## Links 
 
