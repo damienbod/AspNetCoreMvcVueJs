@@ -4,6 +4,8 @@
 
 ## History
 
+2019-10-09 Adding configurations files for deployment
+
 2019-10-04 first version with Vue.js and ASP.NET core in a single project
 
 ## Blogs
