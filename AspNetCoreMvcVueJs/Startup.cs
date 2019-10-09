@@ -26,18 +26,34 @@ namespace AspNetCoreMvcVueJs
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
 
+            services.Configure<AuthConfiguration>(Configuration.GetSection("AuthConfiguration"));
+            services.Configure<AuthSecretsConfiguration>(Configuration.GetSection("AuthSecretsConfiguration"));
+            services.AddScoped<IDataEventRecordRepository, DataEventRecordRepository>();
+
+            var authConfiguration = Configuration.GetSection("AuthConfiguration");
+            var authSecretsConfiguration = Configuration.GetSection("AuthSecretsConfiguration");
+            var stsServerIdentityUrl = authConfiguration["StsServerIdentityUrl"];
+
             services.AddDbContext<DataEventRecordContext>(options =>
                 options.UseSqlite(connection)
             );
-            services.AddScoped<IDataEventRecordRepository, DataEventRecordRepository>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-              .AddIdentityServerAuthentication(options =>
-              {
-                  options.Authority = "https://localhost:44348/";
-                  options.ApiName = "dataEventRecords";
-                  options.ApiSecret = "dataEventRecordsSecret";
-              });
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = $"{authConfiguration["StsServerIdentityUrl"]}/";
+                    options.ApiName = "dataEventRecords"; //$"{authConfiguration["StsServerIdentityUrl"]}/resources";
+                    options.ApiSecret = authSecretsConfiguration["ApiSecret"];
+                    options.NameClaimType = "email";
+                });
+
+            //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            //  .AddIdentityServerAuthentication(options =>
+            //  {
+            //      options.Authority = "https://localhost:44348/";
+            //      options.ApiName = "dataEventRecords";
+            //      options.ApiSecret = "dataEventRecordsSecret";
+            //  });
 
             services.AddAuthorization(options =>
             {
