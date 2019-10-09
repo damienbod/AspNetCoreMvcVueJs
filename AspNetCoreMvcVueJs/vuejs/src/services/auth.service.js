@@ -1,17 +1,18 @@
 import { UserManager, WebStorageStateStore } from 'oidc-client';
+import config from '@/app.config';
 export default class AuthService {
     constructor() {
-        const STS_DOMAIN = 'https://localhost:44348';
+        const STS_DOMAIN = config.stsServerIdentityUrl;
         const settings = {
             userStore: new WebStorageStateStore({ store: window.localStorage }),
             authority: STS_DOMAIN,
-            client_id: 'vuejs_code_client',
-            redirect_uri: 'https://localhost:44341/callback.html',
+            client_id: config.client_id,
+            redirect_uri: config.redirect_uri,
             automaticSilentRenew: true,
-            silent_redirect_uri: 'https://localhost:44341/silent-renew.html',
+            silent_redirect_uri: config.silent_redirect_uri,
             response_type: 'code',
             scope: 'openid profile dataEventRecords',
-            post_logout_redirect_uri: 'https://localhost:44341/',
+            post_logout_redirect_uri: config.post_logout_redirect_uri,
             filterProtocolClaims: true,
         };
         this.userManager = new UserManager(settings);

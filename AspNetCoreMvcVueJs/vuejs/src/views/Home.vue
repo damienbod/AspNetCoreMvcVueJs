@@ -1,15 +1,15 @@
 <template>
-    <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <div class="home">
-            <p v-if="isLoggedIn">User: {{ username }}</p>
-            <button class="btn" @click="login" v-if="!isLoggedIn">Login</button>
-            <button class="btn" @click="logout" v-if="isLoggedIn">Logout</button>
-            <button class="btn" @click="getProtectedApiData" v-if="isLoggedIn">Get API data</button>
+    <div class='home'>
+        <img alt='Vue logo' src='../assets/logo.png'>
+        <div class='home'>
+            <p v-if='isLoggedIn'>User: {{ username }}</p>
+            <button class='btn' @click='login' v-if='!isLoggedIn'>Login</button>
+            <button class='btn' @click='logout' v-if='isLoggedIn'>Logout</button>
+            <button class='btn' @click='getProtectedApiData' v-if='isLoggedIn'>Get API data</button>
         </div>
 
-        <div v-if="dataEventRecordsItems && dataEventRecordsItems.length">
-            <div v-for="dataEventRecordsItem of dataEventRecordsItems">
+        <div v-if='dataEventRecordsItems && dataEventRecordsItems.length'>
+            <div v-for='dataEventRecordsItem of dataEventRecordsItems'>
                 <p><em>Id:</em> {{dataEventRecordsItem.id}} <em>Details:</em> {{dataEventRecordsItem.name}}  - {{dataEventRecordsItem.description}} - {{dataEventRecordsItem.timestamp}}</p>
             </div>
             <br />
@@ -17,11 +17,11 @@
 
     </div>
 </template>
-<script lang="ts">
+<script lang='ts'>
     import { Component, Vue } from 'vue-property-decorator';
     import AuthService from '@/services/auth.service';
-
     import axios from 'axios';
+    import config from '@/app.config';
 
     const auth = new AuthService();
 
@@ -65,7 +65,7 @@
             auth.getAccessToken().then((userToken: string) => {
                 axios.defaults.headers.common[authorizationHeader] = `Bearer ${userToken}`;
 
-                axios.get('https://localhost:44341/api/DataEventRecords/')
+                axios.get(config.ApiUrl)
                     .then((response: any) => {
                         this.dataEventRecordsItems = response.data;
                     })

@@ -3,6 +3,7 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
 namespace StsServerIdentity
@@ -20,15 +21,17 @@ namespace StsServerIdentity
             };
         }
 
-        public static IEnumerable<ApiResource> GetApiResources()
+        public static IEnumerable<ApiResource> GetApiResources(IConfigurationSection authSecretsConfiguration)
         {
+            var apiSecret = authSecretsConfiguration["ApiSecret"];
+
             return new List<ApiResource>
             {
                 new ApiResource("dataEventRecords")
                 {
                     ApiSecrets =
                     {
-                        new Secret("dataEventRecordsSecret".Sha256())
+                        new Secret(apiSecret.Sha256())
                     },
                     Scopes =
                     {
@@ -43,8 +46,9 @@ namespace StsServerIdentity
             };
         }
 
-        public static IEnumerable<Client> GetClients()
+        public static IEnumerable<Client> GetClients(IConfigurationSection authConfiguration)
         {
+            var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
             return new List<Client>
             {
                 new Client
@@ -63,18 +67,18 @@ namespace StsServerIdentity
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris = new List<string>
                     {
-                        "https://localhost:44341",
-                        "https://localhost:44341/callback.html",
-                        "https://localhost:44341/silent-renew.html"
+                        vueJsApiUrl,
+                        $"{vueJsApiUrl}/callback.html",
+                        $"{vueJsApiUrl}/silent-renew.html"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "https://localhost:44341/",
-                        "https://localhost:44341"
+                        $"{vueJsApiUrl}/",
+                        $"{vueJsApiUrl}"
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        "https://localhost:44341"
+                        $"{vueJsApiUrl}"
                     },
                     AllowedScopes = new List<string>
                     {
