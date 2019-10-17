@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using IdentityServer4.Services;
+using Microsoft.AspNetCore.Mvc;
 using StsServerIdentity.Models;
 
 namespace StsServerIdentity.Controllers

@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace StsServerIdentity.Models
+namespace StsServerIdentity.Models.ConsentViewModels
 {
     public class ConsentInputModel
     {

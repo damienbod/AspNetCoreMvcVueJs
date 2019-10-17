@@ -1,4 +1,4 @@
-﻿namespace StsServerIdentity.Models
+﻿namespace StsServerIdentity.Models.AccountViewModels
 {
     public class LogoutViewModel
     {

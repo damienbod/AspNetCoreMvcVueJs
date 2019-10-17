@@ -5,7 +5,7 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 
-namespace StsServerIdentity.Models
+namespace StsServerIdentity.Models.ConsentViewModels
 {
     public class ScopeViewModel
     {

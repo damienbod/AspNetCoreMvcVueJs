@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Localization;
-using System.Reflection;
+﻿using System.Reflection;
+using Microsoft.Extensions.Localization;
 
 namespace StsServerIdentity.Resources
 {

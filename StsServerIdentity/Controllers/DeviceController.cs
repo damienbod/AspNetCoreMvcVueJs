@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StsServerIdentity.Filters;
-using StsServerIdentity.Models;
+using StsServerIdentity.Models.ConsentViewModels;
+using StsServerIdentity.Models.DeviceViewModels;
 
 namespace StsServerIdentity.Controllers
 {

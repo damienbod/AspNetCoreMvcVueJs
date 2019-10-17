@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Localization;
-using System;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Linq;
+using Microsoft.Extensions.Primitives;
 
 namespace StsServerIdentity
 {

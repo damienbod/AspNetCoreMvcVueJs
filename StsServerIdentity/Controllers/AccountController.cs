@@ -1,25 +1,25 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IdentityModel;
+using IdentityServer4;
+using IdentityServer4.Extensions;
+using IdentityServer4.Models;
+using IdentityServer4.Services;
+using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using StsServerIdentity.Models.AccountViewModels;
-using StsServerIdentity.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using IdentityServer4.Models;
-using IdentityModel;
-using IdentityServer4;
-using IdentityServer4.Extensions;
-using System.Globalization;
-using StsServerIdentity.Services;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+using StsServerIdentity.Models;
+using StsServerIdentity.Models.AccountViewModels;
 using StsServerIdentity.Resources;
-using System.Reflection;
+using StsServerIdentity.Services;
 
 namespace StsServerIdentity.Controllers
 {
@@ -122,7 +122,7 @@ namespace StsServerIdentity.Controllers
             return View(await BuildLoginViewModelAsync(model));
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
         {
             var loginProviders = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             var providers = loginProviders
@@ -157,7 +157,7 @@ namespace StsServerIdentity.Controllers
             };
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
         {
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
             var vm = await BuildLoginViewModelAsync(model.ReturnUrl, context);

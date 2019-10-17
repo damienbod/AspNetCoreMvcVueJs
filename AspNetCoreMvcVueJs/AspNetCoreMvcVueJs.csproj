@@ -5,6 +5,9 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <StartupObject>AspNetCoreMvcVueJs.Program</StartupObject>
     <AssemblyName>AspNetCoreMvcVueJs</AssemblyName>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptEnabled>false</TypeScriptEnabled>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>    
     <UserSecretsId>94bf9d2e-94a8-4527-8af6-0329d3e54d52</UserSecretsId>
   </PropertyGroup>
 
