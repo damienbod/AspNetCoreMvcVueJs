@@ -35,12 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Shared\_ScopeListItem.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="sts_dev_cert.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --https --port 44357",
     "build": "vue-cli-service build",
-	"build-production": "vue-cli-service build --mode production",
+    "build-production": "vue-cli-service build --mode production",
     "build-watch": "vue-cli-service build --watch",
     "lint": "vue-cli-service lint"
   },
