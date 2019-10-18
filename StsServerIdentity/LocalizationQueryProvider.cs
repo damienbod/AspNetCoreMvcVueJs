@@ -10,9 +10,9 @@ namespace StsServerIdentity
 {
     public class LocalizationQueryProvider : RequestCultureProvider
     {
-        public static readonly string DefaultParamterName = "culture";
+        public static readonly string DefaultParameterName = "culture";
 
-        public string QureyParamterName { get; set; } = DefaultParamterName;
+        public string QueryParameterName { get; set; } = DefaultParameterName;
 
         /// <inheritdoc />
         public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)

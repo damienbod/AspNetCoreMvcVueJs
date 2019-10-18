@@ -28,16 +28,13 @@ namespace StsServerIdentity.Controllers
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IResourceStore resourceStore,
-            IStringLocalizerFactory factory)
+            IStringLocalizer sharedLocalizer)
         {
             _logger = logger;
             _interaction = interaction;
             _clientStore = clientStore;
             _resourceStore = resourceStore;
-
-            var type = typeof(SharedResource);
-            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
-            _sharedLocalizer = factory.Create("SharedResource", assemblyName.Name);
+            _sharedLocalizer = sharedLocalizer;
         }
 
         /// <summary>
