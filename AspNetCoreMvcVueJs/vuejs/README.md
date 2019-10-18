@@ -15,6 +15,12 @@ npm run serve
 npm run build
 ```
 
+### To run the applications, scripts were added to the project.json npm file. 
+### The build-watch script watches for changes and rebuilds the UI project with each change.
+```
+npm run build-watch
+```
+
 ### Run your tests
 ```
 npm run test

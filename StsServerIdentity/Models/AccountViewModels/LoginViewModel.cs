@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StsServerIdentity.Models
+namespace StsServerIdentity.Models.AccountViewModels
 {
     public class LoginViewModel : LoginInputModel
     {

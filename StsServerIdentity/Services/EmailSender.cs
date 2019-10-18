@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using StsServerIdentity.Models;
-using System.Threading.Tasks;
 
 namespace StsServerIdentity.Services
 {

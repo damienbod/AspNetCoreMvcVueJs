@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -7,15 +9,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using StsServerIdentity.Models.ManageViewModels;
-using StsServerIdentity.Models;
-using StsServerIdentity.Services;
 using Microsoft.Extensions.Localization;
-using StsServerIdentity.Resources;
-using System.Reflection;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using StsServerIdentity.Models;
+using StsServerIdentity.Models.ManageViewModels;
+using StsServerIdentity.Resources;
+using StsServerIdentity.Services;
 
 namespace StsServerIdentity.Controllers
 {

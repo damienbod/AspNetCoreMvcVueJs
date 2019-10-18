@@ -1,15 +1,14 @@
-﻿using IdentityServer4.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Linq;
+﻿using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using IdentityServer4.Models;
+using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using StsServerIdentity.Models;
-using StsServerIdentity.Filters;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+using StsServerIdentity.Models.ConsentViewModels;
 using StsServerIdentity.Resources;
-using System.Reflection;
 
 namespace StsServerIdentity.Controllers
 {

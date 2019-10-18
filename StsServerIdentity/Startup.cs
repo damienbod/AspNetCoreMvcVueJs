@@ -1,31 +1,28 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using System.IO;
-using System.Globalization;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Reflection;
-
+using System.Security.Cryptography.X509Certificates;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-
-using IdentityServer4.Services;
-
-using StsServerIdentity.Services.Certificate;
-using StsServerIdentity.Models;
 using StsServerIdentity.Data;
+using StsServerIdentity.Filters;
+using StsServerIdentity.Models;
 using StsServerIdentity.Resources;
 using StsServerIdentity.Services;
-using StsServerIdentity.Filters;
+using StsServerIdentity.Services.Certificate;
 
 namespace StsServerIdentity
 {
