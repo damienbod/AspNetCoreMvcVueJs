@@ -43,7 +43,7 @@ namespace StsServerIdentity.Controllers
             ILoggerFactory loggerFactory,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
-            IStringLocalizerFactory factory)
+            IStringLocalizer sharedLocalizer)
         {
             _userManager = userManager;
             _persistedGrantService = persistedGrantService;
@@ -52,10 +52,7 @@ namespace StsServerIdentity.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
             _interaction = interaction;
             _clientStore = clientStore;
-
-            var type = typeof(SharedResource);
-            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
-            _sharedLocalizer = factory.Create("SharedResource", assemblyName.Name);
+            _sharedLocalizer = sharedLocalizer;
         }
 
         //
@@ -172,9 +169,6 @@ namespace StsServerIdentity.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
         {
-            var item = CultureInfo.CurrentCulture;
-            var item2 = CultureInfo.CurrentUICulture;
-
             if (User.Identity.IsAuthenticated == false)
             {
                 // if the user is not authenticated, then just show logged out page
@@ -205,9 +199,6 @@ namespace StsServerIdentity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout(LogoutViewModel model)
         {
-            var item = CultureInfo.CurrentCulture;
-            var item2 = CultureInfo.CurrentUICulture;
-
             var idp = User?.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
             var subjectId = HttpContext.User.Identity.GetSubjectId();
 
@@ -221,7 +212,7 @@ namespace StsServerIdentity.Controllers
                     model.LogoutId = await _interaction.CreateLogoutContextAsync();
                 }
 
-                string url = "/Account/Logout?logoutId=" + model.LogoutId;
+                // string url = "/Account/Logout?logoutId=" + model.LogoutId;
                 try
                 {
                     await _signInManager.SignOutAsync();
@@ -434,7 +425,7 @@ namespace StsServerIdentity.Controllers
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                 // Send an email with this link
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: HttpContext.Request.Scheme);
                 await _emailSender.SendEmail(
                    model.Email, 
                    "Reset Password",
@@ -536,7 +527,7 @@ namespace StsServerIdentity.Controllers
             }
             if (model.SelectedProvider == "Authenticator")
             {
-                return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+                return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
             }
 
             // Email used
@@ -553,7 +544,7 @@ namespace StsServerIdentity.Controllers
                 await _emailSender.SendEmail(await _userManager.GetEmailAsync(user), "Security Code", message, "Hi Sir");
             }
 
-            return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         //
@@ -624,10 +615,10 @@ namespace StsServerIdentity.Controllers
             }
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return _userManager.GetUserAsync(HttpContext.User);
-        }
+        //private Task<ApplicationUser> GetCurrentUserAsync()
+        //{
+        //    return _userManager.GetUserAsync(HttpContext.User);
+        //}
 
         private IActionResult RedirectToLocal(string returnUrl)
         {

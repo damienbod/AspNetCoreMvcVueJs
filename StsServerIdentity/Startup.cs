@@ -14,9 +14,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using StsServerIdentity.Data;
 using StsServerIdentity.Filters;
 using StsServerIdentity.Models;
@@ -50,12 +52,13 @@ namespace StsServerIdentity
 
             var clientId = _configuration["MicrosoftClientId"];
             var clientSecret = _configuration["MircosoftClientSecret"];
-           
-            var x509Certificate2 = GetCertificate(_environment, _configuration);
-            AddLocalizationConfigurations(services);
 
+            var sharedResourceAssemblyName = SharedResourceAssemblyName;
+
+            var x509Certificate2 = GetCertificate(_environment, _configuration);
 
             var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -74,14 +77,15 @@ namespace StsServerIdentity
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<LocService>();
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            AddLocalizationConfigurations(services, sharedResourceAssemblyName);
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddErrorDescriber<StsIdentityErrorDescriber>()
                .AddDefaultTokenProviders();
 
-            services.AddAuthorization();
+            // services.AddAuthorization();     => Don't need this as it is include with .AddControllersWithViews
+
             services.AddAuthentication()
                  .AddOpenIdConnect("aad", "Login with Azure AD", options =>
                  {
@@ -101,8 +105,7 @@ namespace StsServerIdentity
                 {
                     options.DataAnnotationLocalizerProvider = (type, factory) =>
                     {
-                        var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
-                        return factory.Create("SharedResource", assemblyName.Name);
+                        return factory.Create("SharedResource", sharedResourceAssemblyName);
                     };
                 });
 
@@ -133,10 +136,9 @@ namespace StsServerIdentity
 
             app.UseCors("AllowAllOrigins");
 
-            app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
-            //app.UseXContentTypeOptions();
-            //app.UseReferrerPolicy(opts => opts.NoReferrer());
-            //app.UseXXssProtection(options => options.EnabledWithBlockMode());
+            app.UseXContentTypeOptions();
+            app.UseReferrerPolicy(opts => opts.NoReferrer());
+            app.UseXXssProtection(options => options.EnabledWithBlockMode());
 
             var authConfiguration = _configuration.GetSection("AuthConfiguration");
             var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
@@ -180,6 +182,10 @@ namespace StsServerIdentity
             });
 
             app.UseIdentityServer();
+
+            // https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/
+            // https://nblumhardt.com/2019/10/serilog-mvc-logging/
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
@@ -229,10 +235,14 @@ namespace StsServerIdentity
             return cert;
         }
 
-        private static void AddLocalizationConfigurations(IServiceCollection services)
+        private static void AddLocalizationConfigurations(IServiceCollection services, string sharedResourceAssemblyName)
         {
-            services.AddSingleton<LocService>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddSingleton(sp => {
+                var factory = sp.GetRequiredService<IStringLocalizerFactory>();
+                return factory.Create("SharedResource", sharedResourceAssemblyName);
+            });
 
             services.Configure<RequestLocalizationOptions>(
                 options =>
@@ -254,11 +264,13 @@ namespace StsServerIdentity
 
                     var providerQuery = new LocalizationQueryProvider
                     {
-                        QureyParamterName = "ui_locales"
+                        QueryParameterName = "ui_locales"
                     };
 
                     options.RequestCultureProviders.Insert(0, providerQuery);
                 });
         }
+
+        private static string SharedResourceAssemblyName => typeof(SharedResource).Assembly.FullName;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
 
 namespace StsServerIdentity.Resources
 {
@@ -7,31 +6,24 @@ namespace StsServerIdentity.Resources
     {
         private readonly IStringLocalizer _localizer;
 
-        public LocService(IStringLocalizerFactory factory)
+        public LocService(IStringLocalizer localizer)
         {
-            var type = typeof(SharedResource);
-            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
-            _localizer = factory.Create("SharedResource", assemblyName.Name);
+            _localizer = localizer;
         }
 
         public LocalizedString GetLocalizedHtmlString(string key)
         {
-            return _localizer[key];
+            return !string.IsNullOrEmpty(key) ? _localizer[key] : new LocalizedString(key, string.Empty);
         }
 
         public LocalizedString GetLocalizedHtmlStringAllowNull(string key)
         {
-            if(!string.IsNullOrWhiteSpace(key))
-            {
-                return _localizer[key];
-            }
-
-            return new LocalizedString(key, string.Empty);
+            return !string.IsNullOrWhiteSpace(key) ? _localizer[key] : new LocalizedString(key, string.Empty);
         }
 
         public LocalizedString GetLocalizedHtmlString(string key, string parameter)
         {
-            return _localizer[key, parameter];
+            return !string.IsNullOrEmpty(key) ? _localizer[key, parameter] : new LocalizedString(key, string.Empty);
         }
     }
 }

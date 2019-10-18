@@ -40,17 +40,14 @@ namespace StsServerIdentity.Controllers
           IEmailSender emailSender,
           ILogger<ManageController> logger,
           UrlEncoder urlEncoder,
-          IStringLocalizerFactory factory)
+          IStringLocalizer sharedLocalizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
-
-            var type = typeof(SharedResource);
-            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
-            _sharedLocalizer = factory.Create("SharedResource", assemblyName.Name);
+            _sharedLocalizer = sharedLocalizer;
         }
 
         [TempData]
@@ -133,7 +130,7 @@ namespace StsServerIdentity.Controllers
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: HttpContext.Request.Scheme);
             await _emailSender.SendEmail(
                model.Email,
                "StsServerIdentity Verification Email",
@@ -511,8 +508,11 @@ namespace StsServerIdentity.Controllers
                 return NotFound(_sharedLocalizer["USER_NOTFOUND", _userManager.GetUserId(User)]);
             }
 
-            var deletePersonalDataViewModel = new DeletePersonalDataViewModel();
-            deletePersonalDataViewModel.RequirePassword = await _userManager.HasPasswordAsync(user);
+            var deletePersonalDataViewModel = new DeletePersonalDataViewModel
+            {
+                RequirePassword = await _userManager.HasPasswordAsync(user)
+            };
+
             return View(deletePersonalDataViewModel);
         }
 
