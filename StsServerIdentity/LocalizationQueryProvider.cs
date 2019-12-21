@@ -11,7 +11,6 @@ namespace StsServerIdentity
     public class LocalizationQueryProvider : RequestCultureProvider
     {
         public static readonly string DefaultParameterName = "culture";
-
         public string QueryParameterName { get; set; } = DefaultParameterName;
 
         /// <inheritdoc />
