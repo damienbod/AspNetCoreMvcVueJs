@@ -182,12 +182,18 @@ namespace StsServerIdentity
             app.UseReferrerPolicy(opts => opts.NoReferrer());
             app.UseXXssProtection(options => options.EnabledWithBlockMode());
 
+            var authConfiguration = _configuration.GetSection("AuthConfiguration");
+            var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
+
             app.UseCsp(opts => opts
                 .BlockAllMixedContent()
                 .StyleSources(s => s.Self())
                 .StyleSources(s => s.UnsafeInline())
                 .FontSources(s => s.Self())
                 .FrameAncestors(s => s.Self())
+                .FrameAncestors(s => s.CustomSources(
+                   vueJsApiUrl)
+                 )
                 .ImageSources(imageSrc => imageSrc.Self())
                 .ImageSources(imageSrc => imageSrc.CustomSources("data:"))
                 .ScriptSources(s => s.Self())
