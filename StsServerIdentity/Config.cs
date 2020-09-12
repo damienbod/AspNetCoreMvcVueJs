@@ -37,7 +37,7 @@ namespace StsServerIdentity
 
             return new List<ApiResource>
             {
-                new ApiResource("dataEventRecords")
+                new ApiResource("DataEventRecordsApi")
                 {
                     ApiSecrets =
                     {

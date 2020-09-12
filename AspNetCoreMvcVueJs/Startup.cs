@@ -42,18 +42,10 @@ namespace AspNetCoreMvcVueJs
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = $"{authConfiguration["StsServerIdentityUrl"]}/";
-                    options.ApiName = "dataEventRecords"; //$"{authConfiguration["StsServerIdentityUrl"]}/resources";
+                    options.ApiName = "DataEventRecordsApi"; //$"{authConfiguration["StsServerIdentityUrl"]}/resources";
                     options.ApiSecret = authSecretsConfiguration["ApiSecret"];
                     options.NameClaimType = "email";
                 });
-
-            //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            //  .AddIdentityServerAuthentication(options =>
-            //  {
-            //      options.Authority = "https://localhost:44348/";
-            //      options.ApiName = "dataEventRecords";
-            //      options.ApiSecret = "dataEventRecordsSecret";
-            //  });
 
             services.AddAuthorization(options =>
             {
@@ -72,8 +64,7 @@ namespace AspNetCoreMvcVueJs
             });
 
             services.AddControllers()
-                .AddNewtonsoftJson()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+                .AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
