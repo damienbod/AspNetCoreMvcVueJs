@@ -41,10 +41,14 @@ namespace StsServerIdentity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<StsConfig>(_configuration.GetSection("StsConfig"));
+            services.Configure<AuthConfiguration>(_configuration.GetSection("AuthConfiguration"));
             services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
             services.AddTransient<IProfileService, IdentityWithAdditionalClaimsProfileService>();
             services.AddTransient<IEmailSender, EmailSender>();
+
+
+            var authConfiguration = _configuration.GetSection("AuthConfiguration");
+            var authSecretsConfiguration = _configuration.GetSection("AuthSecretsConfiguration");
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -67,6 +71,22 @@ namespace StsServerIdentity
                 .AddErrorDescriber<StsIdentityErrorDescriber>()
                 .AddDefaultTokenProviders()
                 .AddTokenProvider<Fifo2UserTwoFactorTokenProvider>("FIDO2");
+
+            var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowCredentials()
+                            .WithOrigins(vueJsApiUrl)
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
             services.AddAuthentication()
                  .AddOpenIdConnect("aad", "Login with Azure AD", options => // Microsoft common
@@ -114,14 +134,12 @@ namespace StsServerIdentity
                 })
                 .AddNewtonsoftJson();
 
-            var stsConfig = _configuration.GetSection("StsConfig");
-
             var identityServer = services.AddIdentityServer()
                 .AddSigningCredential(x509Certificate2Certs.ActiveCertificate)
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources(stsConfig))
+                .AddInMemoryApiResources(Config.GetApiResources(authSecretsConfiguration))
                 .AddInMemoryApiScopes(Config.GetApiScopes())
-                .AddInMemoryClients(Config.GetClients(stsConfig))
+                .AddInMemoryClients(Config.GetClients(authConfiguration))
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<IdentityWithAdditionalClaimsProfileService>();
 
@@ -156,6 +174,8 @@ namespace StsServerIdentity
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
             app.UseXContentTypeOptions();
