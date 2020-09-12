@@ -4,6 +4,8 @@
 
 ## History
 
+2020-09-12 Update to .NET Core 3.1.8, latest STS
+
 2019-12-21 Update to .NET Core 3.1
 
 2019-10-09 Adding configurations files for deployment
@@ -24,7 +26,7 @@ https://damienbod.com/2019/01/29/securing-a-vue-js-app-using-openid-connect-code
 
 https://cli.vuejs.org/
 
-https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0
+https://docs.microsoft.com/en-us/aspnet/core/
 
 http://docs.identityserver.io/en/latest/
 

@@ -1,4 +1,4 @@
-﻿namespace StsServerIdentity
+﻿namespace StsServerIdentity.Models
 {
     public class AuthConfiguration
     {

@@ -3,12 +3,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
-using Microsoft.AspNetCore.Identity;
 using StsServerIdentity.Models;
+using Microsoft.AspNetCore.Identity;
+using IdentityServer4;
 
 namespace StsServerIdentity
 {
@@ -45,6 +45,15 @@ namespace StsServerIdentity
             else
             {
                 claims.Add(new Claim(JwtClaimTypes.Role, "user"));
+            }
+
+            if (user.TwoFactorEnabled)
+            {
+                claims.Add(new Claim("amr", "mfa"));
+            }
+            else
+            {
+                claims.Add(new Claim("amr", "pwd")); ;
             }
 
             claims.Add(new Claim(IdentityServerConstants.StandardScopes.Email, user.Email));

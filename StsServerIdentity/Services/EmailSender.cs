@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using StsServerIdentity.Models;
+using System.Threading.Tasks;
 
 namespace StsServerIdentity.Services
 {
@@ -26,7 +26,7 @@ namespace StsServerIdentity.Services
             //msg.AddContent(MimeType.Html, message);
 
             msg.SetReplyTo(new EmailAddress(_optionsEmailSettings.Value.SenderEmailAddress, "damienbod"));
-            
+
             var response = await client.SendEmailAsync(msg);
         }
     }

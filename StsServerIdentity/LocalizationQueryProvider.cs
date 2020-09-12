@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Localization;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Linq;
 
 namespace StsServerIdentity
 {
@@ -37,7 +37,7 @@ namespace StsServerIdentity
                     var requestCulture = query1.FirstOrDefault(t => t.Key == "ui_locales").Value;
 
                     var cultureFromReturnUrl = requestCulture.ToString();
-                    if(string.IsNullOrEmpty(cultureFromReturnUrl))
+                    if (string.IsNullOrEmpty(cultureFromReturnUrl))
                     {
                         return NullProviderCultureResult;
                     }

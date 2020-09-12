@@ -1,4 +1,5 @@
-﻿@inject LocService SharedLocalizer
+﻿@using StsServerIdentity.Resources
+@inject LocService SharedLocalizer
 @model DeletePersonalDataViewModel
 @{
     ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("DELETE_PERSONAL_DATA");
