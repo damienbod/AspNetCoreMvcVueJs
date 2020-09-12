@@ -1,4 +1,5 @@
-﻿@inject LocService SharedLocalizer
+﻿@using StsServerIdentity.Resources
+@inject LocService SharedLocalizer
 @model IndexViewModel
 @{
     ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("PROFILE");

@@ -1,4 +1,5 @@
-﻿@inject LocService SharedLocalizer
+﻿@using StsServerIdentity.Resources
+@inject LocService SharedLocalizer
 @model LoginWithRecoveryCodeViewModel
 @{
     ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("ACCOUNT_RECOVERY_CODE_VERIFICATION");
