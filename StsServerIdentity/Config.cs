@@ -9,16 +9,17 @@ namespace StsServerIdentity
 {
     public class Config
     {
-
         public static IEnumerable<ApiScope> GetApiScopes()
         {
             return new List<ApiScope>
             {
-                //new ApiScope("dataEventRecords", "Scope for the dataEventRecords ApiResource"),
-                //new ApiScope("securedFiles",  "Scope for the securedFiles ApiResource")
+                new ApiScope("dataEventRecords", "Scope for the dataEventRecords ApiResource",
+                    new List<string> { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user"}),
+                new ApiScope("securedFiles",  "Scope for the securedFiles ApiResource",
+                    new List<string> { "role", "admin", "user", "securedFiles", "securedFiles.admin", "securedFiles.user" })
             };
         }
-		
+
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
@@ -42,14 +43,7 @@ namespace StsServerIdentity
                     {
                         new Secret(apiSecret.Sha256())
                     },
-                    Scopes =
-                    {
-                        new Scope
-                        {
-                            Name = "dataeventrecords",
-                            DisplayName = "Scope for the dataEventRecords ApiResource"
-                        }
-                    },
+                    Scopes = new List<string> { "dataEventRecords" },
                     UserClaims = { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user" }
                 }
             };
