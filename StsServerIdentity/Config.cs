@@ -9,6 +9,16 @@ namespace StsServerIdentity
 {
     public class Config
     {
+
+        public static IEnumerable<ApiScope> GetApiScopes()
+        {
+            return new List<ApiScope>
+            {
+                //new ApiScope("dataEventRecords", "Scope for the dataEventRecords ApiResource"),
+                //new ApiScope("securedFiles",  "Scope for the securedFiles ApiResource")
+            };
+        }
+		
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
