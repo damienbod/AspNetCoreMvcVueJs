@@ -1,8 +1,10 @@
-## ASP.NET Core 3.1 API with Vue.js View + second IdentityServer4 STS server
+## ASP.NET Core 5 API with Vue.js View + second IdentityServer4 STS server
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lqiqgxxq929eghlb?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremvcvuejs)
 
 ## History
+
+2021-01-09 Update to .NET 5
 
 2020-09-12 Update to .NET Core 3.1.8, latest STS
 
