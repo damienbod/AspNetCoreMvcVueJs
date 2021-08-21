@@ -4,6 +4,8 @@
 
 ## History
 
+2021-08-21 Updated packages
+
 2021-01-09 Update to .NET 5
 
 2020-09-12 Update to .NET Core 3.1.8, latest STS
