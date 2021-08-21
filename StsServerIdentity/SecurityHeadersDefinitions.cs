@@ -36,8 +36,7 @@ namespace StsServerIdentity
 
                     builder.AddFrameAncestors()
                         .Self()
-                        .From("https://localhost:44357")
-                        .From("https://localhost:44356");
+                        .From("https://localhost:44341");
 
                     // removed this for demos add this back with explicit redirects for prod
                     // builder.AddFormAction().Self();
