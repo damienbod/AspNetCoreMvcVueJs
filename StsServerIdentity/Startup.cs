@@ -25,11 +25,16 @@ using StsServerIdentity.Services.Certificate;
 using Serilog;
 using Microsoft.AspNetCore.Http;
 using Fido2NetLib;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
 
 namespace StsServerIdentity
 {
     public class Startup
     {
+        private string _clientId = "xxxxxx";
+        private string _clientSecret = "xxxxx";
         private IConfiguration _configuration { get; }
         private IWebHostEnvironment _environment { get; }
 
@@ -41,15 +46,13 @@ namespace StsServerIdentity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AuthConfiguration>(_configuration.GetSection("AuthConfiguration"));
+            services.Configure<AuthConfigurations>(_configuration.GetSection("AuthConfigurations"));
             services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
             services.AddTransient<IProfileService, IdentityWithAdditionalClaimsProfileService>();
             services.AddTransient<IEmailSender, EmailSender>();
 
-
-            var authConfiguration = _configuration.GetSection("AuthConfiguration");
-            var authSecretsConfiguration = _configuration.GetSection("AuthSecretsConfiguration");
-
+            var authConfiguration = _configuration.GetSection("AuthConfigurations");
+            var authSecretsConfiguration = _configuration.GetSection("AuthSecretsConfigurations");
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
@@ -59,13 +62,23 @@ namespace StsServerIdentity
                     CheckSameSite(cookieContext.Context, cookieContext.CookieOptions);
             });
 
+            _clientId = _configuration["MicrosoftClientId"];
+            _clientSecret = _configuration["MircosoftClientSecret"];
+            var authConfigurations = _configuration.GetSection("AuthConfigurations");
+            var useLocalCertStore = Convert.ToBoolean(_configuration["UseLocalCertStore"]);
+            var certificateThumbprint = _configuration["CertificateThumbprint"];
+
             var x509Certificate2Certs = GetCertificates(_environment, _configuration)
-                .GetAwaiter().GetResult();
-            AddLocalizationConfigurations(services);
+               .GetAwaiter().GetResult();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
+            services.Configure<AuthConfigurations>(_configuration.GetSection("AuthConfigurations"));
+            services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
+            services.AddTransient<IProfileService, IdentityWithAdditionalClaimsProfileService>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            AddLocalizationConfigurations(services);
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<StsIdentityErrorDescriber>()
@@ -73,8 +86,8 @@ namespace StsServerIdentity
                 .AddTokenProvider<Fifo2UserTwoFactorTokenProvider>("FIDO2");
 
             var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
-
-            services.AddCors(options =>
+			
+			services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
                     builder =>
@@ -88,12 +101,14 @@ namespace StsServerIdentity
                     });
             });
 
-            services.AddAuthentication()
-                 .AddOpenIdConnect("aad", "Login with Azure AD", options => // Microsoft common
+            if (_clientId != null)
+            {
+                services.AddAuthentication()
+                 .AddOpenIdConnect("Azure AD / Microsoft", "Azure AD / Microsoft", options => // Microsoft common
                  {
                      //  https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
-                     options.ClientId = "your_client_id"; // ADD APP Registration ID
-                     options.ClientSecret = "your_secret"; // ADD APP Registration secret
+                     options.ClientId = _clientId;
+                     options.ClientSecret = _clientSecret;
                      options.SignInScheme = "Identity.External";
                      options.RemoteAuthenticationTimeout = TimeSpan.FromSeconds(30);
                      options.Authority = "https://login.microsoftonline.com/common/v2.0/";
@@ -101,23 +116,32 @@ namespace StsServerIdentity
                      options.UsePkce = false; // live does not support this yet
                      options.Scope.Add("profile");
                      options.Scope.Add("email");
+                     options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
+                     options.ClaimActions.MapAll(); // ClaimActions.MapUniqueJsonKey("amr", "amr");
+                     //options.ClaimActions.Remove("amr");
+                     options.GetClaimsFromUserInfoEndpoint = true;
                      options.TokenValidationParameters = new TokenValidationParameters
                      {
-                         // ALWAYS VALIDATE THE ISSUER IF POSSIBLE !!!!
                          ValidateIssuer = false,
-                         // ValidIssuers = new List<string> { "tenant..." },
                          NameClaimType = "email",
                      };
                      options.CallbackPath = "/signin-microsoft";
                      options.Prompt = "login"; // login, consent
-                 });
+                     options.Events = new OpenIdConnectEvents
+                     {
+                         OnRedirectToIdentityProvider = context =>
+                         {
+                             context.ProtocolMessage.SetParameter("acr_values", "mfa");
 
-            services.AddAntiforgery(options =>
+                             return Task.FromResult(0);
+                         }
+                     };
+                 });
+            }
+            else
             {
-                options.SuppressXFrameOptionsHeader = true;
-                options.Cookie.SameSite = SameSiteMode.Strict;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            });
+                services.AddAuthentication();
+            }
 
             services.AddControllersWithViews(options =>
                 {
@@ -134,7 +158,13 @@ namespace StsServerIdentity
                 })
                 .AddNewtonsoftJson();
 
-            var identityServer = services.AddIdentityServer()
+            services.AddIdentityServer(options =>
+                {
+                    options.Events.RaiseErrorEvents = true;
+                    options.Events.RaiseInformationEvents = true;
+                    options.Events.RaiseFailureEvents = true;
+                    options.Events.RaiseSuccessEvents = true;
+                })
                 .AddSigningCredential(x509Certificate2Certs.ActiveCertificate)
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources(authSecretsConfiguration))
@@ -143,12 +173,8 @@ namespace StsServerIdentity
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<IdentityWithAdditionalClaimsProfileService>();
 
-            if (x509Certificate2Certs.SecondaryCertificate != null)
-            {
-                identityServer.AddValidationKey(x509Certificate2Certs.SecondaryCertificate);
-            }
-
             services.Configure<Fido2Configuration>(_configuration.GetSection("fido2"));
+            services.Configure<Fido2MdsConfiguration>(_configuration.GetSection("fido2mds"));
             services.AddScoped<Fido2Storage>();
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
@@ -161,44 +187,25 @@ namespace StsServerIdentity
             });
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSecurityHeaders(
+                SecurityHeadersDefinitions
+                    .GetHeaderPolicyCollection(env.IsDevelopment()));
+
             app.UseCookiePolicy();
 
             if (_environment.IsDevelopment())
             {
+                // for debugging
+                IdentityModelEventSource.ShowPII = true;
+
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseCors("AllowAllOrigins");
-
-            app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
-            app.UseXContentTypeOptions();
-            app.UseReferrerPolicy(opts => opts.NoReferrer());
-            app.UseXXssProtection(options => options.EnabledWithBlockMode());
-
-            var authConfiguration = _configuration.GetSection("AuthConfiguration");
-            var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
-
-            app.UseCsp(opts => opts
-                .BlockAllMixedContent()
-                .StyleSources(s => s.Self())
-                .StyleSources(s => s.UnsafeInline())
-                .FontSources(s => s.Self())
-                .FrameAncestors(s => s.Self())
-                .FrameAncestors(s => s.CustomSources(
-                   vueJsApiUrl)
-                 )
-                .ImageSources(imageSrc => imageSrc.Self())
-                .ImageSources(imageSrc => imageSrc.CustomSources("data:"))
-                .ScriptSources(s => s.Self())
-                .ScriptSources(s => s.UnsafeInline())
-            );
 
             var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(locOptions.Value);
@@ -207,25 +214,7 @@ namespace StsServerIdentity
             // https://nblumhardt.com/2019/10/serilog-mvc-logging/
             app.UseSerilogRequestLogging();
 
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                OnPrepareResponse = context =>
-                {
-                    if (context.Context.Response.Headers["feature-policy"].Count == 0)
-                    {
-                        var featurePolicy = "accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'";
-
-                        context.Context.Response.Headers["feature-policy"] = featurePolicy;
-                    }
-
-                    if (context.Context.Response.Headers["X-Content-Security-Policy"].Count == 0)
-                    {
-                        var csp = "script-src 'self';style-src 'self';img-src 'self' data:;font-src 'self';form-action 'self';frame-ancestors 'self';block-all-mixed-content";
-                        // IE
-                        context.Context.Response.Headers["X-Content-Security-Policy"] = csp;
-                    }
-                }
-            });
+            app.UseStaticFiles();
 
             app.UseRouting();
 
