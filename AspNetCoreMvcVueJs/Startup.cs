@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using AspNetCoreMvcVueJs.Model;
 using Microsoft.EntityFrameworkCore;
-using IdentityServer4.AccessTokenValidation;
 using Microsoft.IdentityModel.Logging;
 using AspNetCoreMvcVueJs.Repositories;
+using IdentityModel.AspNetCore.OAuth2Introspection;
 
 namespace AspNetCoreMvcVueJs
 {
@@ -38,12 +38,12 @@ namespace AspNetCoreMvcVueJs
                 options.UseSqlite(connection)
             );
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
+            services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
+                .AddOAuth2Introspection(options =>
                 {
                     options.Authority = $"{authConfiguration["StsServerIdentityUrl"]}/";
-                    options.ApiName = "DataEventRecordsApi"; //$"{authConfiguration["StsServerIdentityUrl"]}/resources";
-                    options.ApiSecret = authSecretsConfiguration["ApiSecret"];
+                    options.ClientId = "DataEventRecordsApi"; //$"{authConfiguration["StsServerIdentityUrl"]}/resources";
+                    options.ClientSecret = authSecretsConfiguration["ApiSecret"];
                     options.NameClaimType = "email";
                 });
 
