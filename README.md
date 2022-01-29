@@ -1,6 +1,6 @@
 ## ASP.NET Core 6 API with Vue.js View + second IdentityServer4 STS server
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lqiqgxxq929eghlb?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoremvcvuejs)
+[![.NET](https://github.com/damienbod/AspNetCoreMvcVueJs/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreMvcVueJs/actions/workflows/dotnet.yml)
 
 ## History
 
