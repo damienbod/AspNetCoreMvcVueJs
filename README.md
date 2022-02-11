@@ -4,6 +4,8 @@
 
 ## History
 
+2022-02-11 Updated packages, fixed duplication
+
 2022-01-28 Updated packages, Updated .NET 6
 
 2021-08-21 Updated packages

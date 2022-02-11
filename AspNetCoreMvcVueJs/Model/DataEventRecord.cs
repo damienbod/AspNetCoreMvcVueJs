@@ -1,14 +1,13 @@
 ﻿using System;
 
-namespace AspNetCoreMvcVueJs.Model
+namespace AspNetCoreMvcVueJs.Model;
+
+public class DataEventRecord
 {
-    public class DataEventRecord
-    {
-        public long Id { get; set; }
-        public string Name { get; set; }
+    public long Id { get; set; }
+    public string Name { get; set; }
 
-        public string Description { get; set; }
+    public string Description { get; set; }
 
-        public DateTime Timestamp { get; set; }
-    }
+    public DateTime Timestamp { get; set; }
 }

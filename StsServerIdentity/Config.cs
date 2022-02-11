@@ -5,95 +5,94 @@ using System.Collections.Generic;
 using IdentityServer4.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace StsServerIdentity
+namespace StsServerIdentity;
+
+public class Config
 {
-    public class Config
+    public static IEnumerable<ApiScope> GetApiScopes()
     {
-        public static IEnumerable<ApiScope> GetApiScopes()
+        return new List<ApiScope>
         {
-            return new List<ApiScope>
-            {
-                new ApiScope("dataEventRecords", "Scope for the dataEventRecords ApiResource",
-                    new List<string> { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user"}),
-                new ApiScope("securedFiles",  "Scope for the securedFiles ApiResource",
-                    new List<string> { "role", "admin", "user", "securedFiles", "securedFiles.admin", "securedFiles.user" })
-            };
-        }
+            new ApiScope("dataEventRecords", "Scope for the dataEventRecords ApiResource",
+                new List<string> { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user"}),
+            new ApiScope("securedFiles",  "Scope for the securedFiles ApiResource",
+                new List<string> { "role", "admin", "user", "securedFiles", "securedFiles.admin", "securedFiles.user" })
+        };
+    }
 
-        public static IEnumerable<IdentityResource> GetIdentityResources()
+    public static IEnumerable<IdentityResource> GetIdentityResources()
+    {
+        return new List<IdentityResource>
         {
-            return new List<IdentityResource>
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                new IdentityResources.Email(),
-                new IdentityResource("dataeventrecordsscope",new []{ "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin" , "dataEventRecords.user" } )
-            };
-        }
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
+            new IdentityResources.Email(),
+            new IdentityResource("dataeventrecordsscope",new []{ "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin" , "dataEventRecords.user" } )
+        };
+    }
 
-        public static IEnumerable<ApiResource> GetApiResources(IConfigurationSection authSecretsConfiguration)
+    public static IEnumerable<ApiResource> GetApiResources(IConfigurationSection authSecretsConfiguration)
+    {
+        var apiSecret = authSecretsConfiguration["ApiSecret"];
+
+        return new List<ApiResource>
         {
-            var apiSecret = authSecretsConfiguration["ApiSecret"];
-
-            return new List<ApiResource>
+            new ApiResource("DataEventRecordsApi")
             {
-                new ApiResource("DataEventRecordsApi")
+                ApiSecrets =
                 {
-                    ApiSecrets =
-                    {
-                        new Secret(apiSecret.Sha256())
-                    },
-                    Scopes = new List<string> { "dataEventRecords" },
-                    UserClaims = { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user" }
-                }
-            };
-        }
-
-        public static IEnumerable<Client> GetClients(IConfigurationSection authConfiguration)
-        {
-            var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
-            return new List<Client>
-            {
-                new Client
-                {
-                    ClientName = "vuejs_code_client",
-                    ClientId = "vuejs_code_client",
-                    AccessTokenType = AccessTokenType.Reference,
-                    // RequireConsent = false,
-                    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
-                    IdentityTokenLifetime = 300,
-
-                    RequireClientSecret = false,
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-
-                    AllowAccessTokensViaBrowser = true,
-                    RedirectUris = new List<string>
-                    {
-                        vueJsApiUrl,
-                        $"{vueJsApiUrl}/callback.html",
-                        $"{vueJsApiUrl}/silent-renew.html"
-                    },
-                    PostLogoutRedirectUris = new List<string>
-                    {
-                        $"{vueJsApiUrl}/",
-                        $"{vueJsApiUrl}"
-                    },
-                    AllowedCorsOrigins = new List<string>
-                    {
-                        $"{vueJsApiUrl}"
-                    },
-                    AllowedScopes = new List<string>
-                    {
-                        "openid",
-                        "dataEventRecords",
-                        "dataeventrecordsscope",
-                        "role",
-                        "profile",
-                        "email"
-                    }
+                    new Secret(apiSecret.Sha256())
                 },
-            };
-        }
+                Scopes = new List<string> { "dataEventRecords" },
+                UserClaims = { "role", "admin", "user", "dataEventRecords", "dataEventRecords.admin", "dataEventRecords.user" }
+            }
+        };
+    }
+
+    public static IEnumerable<Client> GetClients(IConfigurationSection authConfiguration)
+    {
+        var vueJsApiUrl = authConfiguration["VueJsApiUrl"];
+        return new List<Client>
+        {
+            new Client
+            {
+                ClientName = "vuejs_code_client",
+                ClientId = "vuejs_code_client",
+                AccessTokenType = AccessTokenType.Reference,
+                // RequireConsent = false,
+                AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
+                IdentityTokenLifetime = 300,
+
+                RequireClientSecret = false,
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
+
+                AllowAccessTokensViaBrowser = true,
+                RedirectUris = new List<string>
+                {
+                    vueJsApiUrl,
+                    $"{vueJsApiUrl}/callback.html",
+                    $"{vueJsApiUrl}/silent-renew.html"
+                },
+                PostLogoutRedirectUris = new List<string>
+                {
+                    $"{vueJsApiUrl}/",
+                    $"{vueJsApiUrl}"
+                },
+                AllowedCorsOrigins = new List<string>
+                {
+                    $"{vueJsApiUrl}"
+                },
+                AllowedScopes = new List<string>
+                {
+                    "openid",
+                    "dataEventRecords",
+                    "dataeventrecordsscope",
+                    "role",
+                    "profile",
+                    "email"
+                }
+            },
+        };
     }
 }

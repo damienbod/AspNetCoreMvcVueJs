@@ -1,7 +1,6 @@
-﻿namespace AspNetCoreMvcVueJs
+﻿namespace AspNetCoreMvcVueJs;
+
+public class AuthSecretsConfiguration
 {
-    public class AuthSecretsConfiguration
-    {
-        public string ApiSecret { get; set; }
-    }
+    public string ApiSecret { get; set; }
 }
